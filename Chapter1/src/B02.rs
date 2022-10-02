@@ -6,39 +6,40 @@ use proconio::{
 
 #[fastout]
 fn main() {
+    // input a, b
     input! {
-        n: usize, x: usize,
-        a: [usize; n],
+        a: i32, b: i32,
     }
 
-    if find(a, x) {
+    if divide(a, b) {
         println!("Yes");
     } else {
         println!("No");
     }
 }
 
-fn find(a: Vec<usize>, x: usize) -> bool {
-    for i in 0..a.len() {
-        if a[i] == x {
+fn divisor(a: i32, b: i32) -> bool {
+    for i in a..=b {
+        if i % 100 == 0 {
             return true;
         }
     }
+
     return false;
 }
 
-// test
+//test
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn find_test() {
-        assert_eq!(find(vec![1, 2, 3], 1), true);
+    fn divisor_test() {
+        assert_eq!(divisor(101, 200), true);
     }
 
     #[test]
-    fn find_test2() {
-        assert_eq!(find(vec![1, 2, 3], 5), false);
+    fn divisor_test2() {
+        assert_eq!(divisor(101, 199), false);
     }
 }
